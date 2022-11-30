@@ -5,14 +5,14 @@ import { Command, CommandInput, CommandList, CommandOption } from "superkey";
 
 const data = [
   {
-    id: 1,
+    id: '1',
     name: "Create new link",
     description: "Description 1",
     href: "/dash/create",
     icon: <BiPlus />,
   },
   {
-    id: 2,
+    id: '2',
     name: "My links",
     description: "",
     href: "/dash/create",

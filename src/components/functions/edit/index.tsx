@@ -9,7 +9,7 @@ import Alert from "@/ui/alert";
 import { BiCheck } from "react-icons/bi";
 
 interface EditProps {
-  id: number;
+  id: string;
   slug: string;
   url: string;
   description: string;

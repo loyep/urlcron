@@ -9,7 +9,7 @@ import { BiTrash } from "react-icons/bi";
 import { nanoid } from "nanoid";
 
 interface DeleteProps {
-  id: number;
+  id: string;
 }
 
 const Delete = (props: DeleteProps) => {

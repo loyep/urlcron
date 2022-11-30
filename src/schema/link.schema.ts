@@ -30,5 +30,5 @@ export const FilterLinkSchema = z.object({
 export type FilterLinkInput = z.TypeOf<typeof FilterLinkSchema>
 
 export const getSingleLinkSchema = z.object({
-  linkId: z.number(),
+  linkId: z.string(),
 });

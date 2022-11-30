@@ -1,5 +1,5 @@
 export interface CardProps {
-  id: number;
+  id: string;
   url: string;
   slug: string;
   description: string;
