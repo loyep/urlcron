@@ -12,27 +12,44 @@ export const authOptions: NextAuthOptions = {
       clientId: env.GITHUB_ID || "",
       clientSecret: env.GITHUB_CLIENT_SECRET || "",
       profile(profile) {
+        console.log("profile", profile);
         return {
           id: profile.id.toString(),
           name: profile.name || profile.login,
           username: profile.login,
           email: profile.email,
-          image: profile.avatar_url,
+          // image: profile.avatar_url,
         };
       },
     }),
   ],
   secret: env.NEXTAUTH_SECRET || "",
   adapter: PrismaAdapter(prisma),
+  debug: true,
+  logger: {
+    error(code, ...message) {
+      console.error(code, message);
+    },
+    warn(code, ...message) {
+      console.warn(code, message);
+    },
+    debug(code, ...message) {
+      console.debug(code, message);
+    },
+  },
   callbacks: {
-    session: ({ session, user }) => ({
-      ...session,
-      user: {
-        ...session.user,
-        id: user.id,
-        username: user.username,
-      },
-    }),
+    session: ({ session, user }) => {
+      console.log("session", session);
+      console.log("user", user);
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: user.id,
+          username: user.username,
+        },
+      };
+    },
   },
 };
 
