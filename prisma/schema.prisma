@@ -57,6 +57,7 @@ model User {
     accounts      Account[]
     sessions      Session[]
     links         link[]
+    Task          Task[]
 }
 
 model VerificationToken {
@@ -65,4 +66,17 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+model Task {
+    id        Int     @id @default(autoincrement())
+    title     String
+    content   String?
+    url       String
+    cron      String
+    published Boolean @default(false)
+    author    User?   @relation(fields: [authorId], references: [id])
+    authorId  String?
+
+    @@index([authorId])
 }
