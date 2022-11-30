@@ -1,7 +1,7 @@
 import z from "zod";
 
 export const LinkSchema = z.object({
-  id: z.number(),
+  id: z.string(),
   url: z.string(),
   slug: z.string(),
   description: z.string(),

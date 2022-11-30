@@ -1,29 +1,30 @@
 generator client {
     provider = "prisma-client-js"
+    previewFeatures = ["referentialIntegrity"]
 }
 
 datasource db {
-    provider     = "mysql"
+    provider     = "postgresql"
     url          = env("DATABASE_URL")
     relationMode = "prisma"
 }
 
 model link {
-    id          Int      @id @default(autoincrement())
+    id          String      @id @default(uuid())
     url         String   @db.Text
     slug        String   @unique
     description String?
     createdAt   DateTime @default(now())
     createdBy   User?    @relation(fields: [creatorId], references: [id])
-    creatorId   Int
+    creatorId   String
 
     @@index(slug)
     @@index([creatorId])
 }
 
 model Account {
-    id                Int     @id @default(autoincrement())
-    userId            Int
+    id                String     @id @default(uuid())
+    userId            String
     type              String
     provider          String
     providerAccountId String
@@ -41,9 +42,9 @@ model Account {
 }
 
 model Session {
-    id           Int      @id @default(autoincrement())
+    id           String      @id @default(uuid())
     sessionToken String   @unique
-    userId       Int
+    userId       String
     expires      DateTime
     user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -51,7 +52,7 @@ model Session {
 }
 
 model User {
-    id            Int       @id @default(autoincrement())
+    id            String       @id @default(uuid())
     name          String?
     username      String?
     email         String?   @unique
@@ -79,7 +80,7 @@ model Task {
     cron      String
     published Boolean @default(false)
     author    User?   @relation(fields: [authorId], references: [id])
-    authorId  Int?
+    authorId  String?
 
     @@index([authorId])
 }

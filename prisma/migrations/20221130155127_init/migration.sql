@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "link" (
-    "id" SERIAL NOT NULL,
+    "id" TEXT NOT NULL,
     "url" TEXT NOT NULL,
     "slug" TEXT NOT NULL,
     "description" TEXT,
@@ -77,10 +77,19 @@ CREATE UNIQUE INDEX "link_slug_key" ON "link"("slug");
 CREATE INDEX "link_slug_idx" ON "link"("slug");
 
 -- CreateIndex
+CREATE INDEX "link_creatorId_idx" ON "link"("creatorId");
+
+-- CreateIndex
+CREATE INDEX "Account_userId_idx" ON "Account"("userId");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Account_provider_providerAccountId_key" ON "Account"("provider", "providerAccountId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Session_sessionToken_key" ON "Session"("sessionToken");
+
+-- CreateIndex
+CREATE INDEX "Session_userId_idx" ON "Session"("userId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
