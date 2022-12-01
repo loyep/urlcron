@@ -49,7 +49,7 @@ const MyApp = (props: AppProps) => {
   const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
-    <>
+    <div className="min-h-screen">
       <NextNProgress
         color="#979797"
         startPosition={0.3}
@@ -70,7 +70,7 @@ const MyApp = (props: AppProps) => {
       </TooltipProvider>
       <Toaster position="bottom-center" reverseOrder={false} />
       <Analytics />
-    </>
+    </div>
   );
 };
 
