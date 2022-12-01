@@ -1,6 +1,6 @@
 import LinkRoute from "@/ui/linkRoute";
 import { BiPlus } from "react-icons/bi";
-import Shell from "@/layout/shell";
+import Shell from "@/layout/shell/index";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
