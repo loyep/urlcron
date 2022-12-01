@@ -2,7 +2,27 @@ import Link from "next/link";
 import Logo from "./logo";
 import Navigation from "./navigation";
 import { UserDropdown } from "./user-dropdown";
+import { BsSearch } from "react-icons/bs";
+import Tooltip from '@/components/ui/Tooltip'
 
+export const isMac = typeof window !== "undefined" ? navigator.userAgent.indexOf("Mac") != -1 : false;
+
+export const KBarTrigger = () => {
+    return (
+      <>
+        <Tooltip side="right" content={isMac ? "⌘ + K" : "CTRL + K"}>
+          <button
+            color="minimal"
+            title="search"
+            className="group flex rounded-md py-2 px-3 text-sm font-medium hover:bg-gray-100 lg:p-1 lg:hover:bg-gray-200 lg:hover:text-neutral-900">
+            <BsSearch className="h-4 w-4 flex-shrink-0 text-inherit" />
+          </button>
+        </Tooltip>
+      </>
+    );
+  };
+
+  
 export default function SideBar() {
     return (
       <aside className="desktop-transparent hidden w-14 flex-col border-r border-gray-100 bg-gray-50 md:flex lg:w-56 lg:flex-shrink-0 lg:px-4">
@@ -26,7 +46,7 @@ export default function SideBar() {
                 className="desktop-only group flex text-sm font-medium text-neutral-500 hover:text-neutral-900">
                 {/* <Icon.FiArrowRight className="h-4 w-4 flex-shrink-0 text-neutral-500 group-hover:text-neutral-900" /> */}
               </button>
-              {/* <KBarTrigger /> */}
+              <KBarTrigger />
             </div>
           </header>
   

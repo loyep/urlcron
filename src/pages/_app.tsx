@@ -28,6 +28,7 @@ import nextSeoConfig from "next-seo.config";
 
 // Next progress =>
 import NextNProgress from "nextjs-progressbar";
+import { TooltipProvider } from "@radix-ui/react-tooltip";
 
 // Workaround for https://github.com/vercel/next.js/issues/8592
 export type AppProps = Omit<NextAppProps, "Component"> & {
@@ -57,14 +58,16 @@ const MyApp = (props: AppProps) => {
         showOnShallow={true}
       />
       <DefaultSeo {...nextSeoConfig} />
-      <SessionProvider session={session}>
-        {getLayout(<Component {...pageProps} err={err} />, router)}
-        {/* <Layout>
+      <TooltipProvider>
+        <SessionProvider session={session}>
+          {getLayout(<Component {...pageProps} err={err} />, router)}
+          {/* <Layout>
           <Show routerKey={router.route}>
             <Component {...pageProps} />
           </Show>
         </Layout> */}
-      </SessionProvider>
+        </SessionProvider>
+      </TooltipProvider>
       <Toaster position="bottom-center" reverseOrder={false} />
       <Analytics />
     </>

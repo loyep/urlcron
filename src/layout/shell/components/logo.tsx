@@ -14,6 +14,7 @@ export default function Logo({
       {animated ? (
         <div className="max-w-40">
           <span className="inline dark:hidden">
+            
             {/* <Lottie animationData={LogoAnimated} loop={false} /> */}
           </span>
           <span className="hidden dark:inline">
