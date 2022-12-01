@@ -108,7 +108,7 @@ export function ShellMain(props: LayoutProps) {
               }
               StartIcon={Icon.FiArrowLeft}
               aria-label="Go Back"
-              className="ltr:mr-2 rtl:ml-2"
+              className="mr-2"
             />
           )} */}
         {props.heading && (
@@ -119,9 +119,9 @@ export function ShellMain(props: LayoutProps) {
             )}
           >
             {props.HeadingLeftIcon && (
-              <div className="ltr:mr-4">{props.HeadingLeftIcon}</div>
+              <div className="mr-4">{props.HeadingLeftIcon}</div>
             )}
-            <div className="w-full ltr:mr-4 rtl:ml-4 sm:block">
+            <div className="w-full mr-4 sm:block">
               {props.heading && (
                 <h1 className="font-cal max-w-28 sm:max-w-72 md:max-w-80 mb-1 hidden truncate text-xl font-bold tracking-wide text-black sm:block xl:max-w-full">
                   {props.heading}

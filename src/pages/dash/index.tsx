@@ -110,14 +110,14 @@ export const getServerSideProps: GetServerSideProps = async (
 ) => {
   const session = await getServerAuthSession(ctx);
 
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/auth",
-        permanent: false,
-      },
-    };
-  }
+  // if (!session) {
+  //   return {
+  //     redirect: {
+  //       destination: "/auth",
+  //       permanent: false,
+  //     },
+  //   };
+  // }
 
   return {
     props: { session },

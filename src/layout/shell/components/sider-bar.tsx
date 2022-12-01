@@ -1,13 +1,14 @@
 import Link from "next/link";
 import Logo from "./logo";
-
+import Navigation from "./navigation";
+import { UserDropdown } from "./user-dropdown";
 
 export default function SideBar() {
     return (
       <aside className="desktop-transparent hidden w-14 flex-col border-r border-gray-100 bg-gray-50 md:flex lg:w-56 lg:flex-shrink-0 lg:px-4">
         <div className="flex h-0 flex-1 flex-col overflow-y-auto pt-3 pb-4 lg:pt-5">
           <header className="items-center justify-between md:hidden lg:flex">
-            <Link href="/event-types">
+            <Link href="/event-types" legacyBehavior>
               <a className="px-4">
                 <Logo small />
               </a>
@@ -32,13 +33,13 @@ export default function SideBar() {
           <hr className="desktop-only absolute -left-3 -right-3 mt-4 block w-full border-gray-200" />
   
           {/* logo icon for tablet */}
-          <Link href="/event-types">
+          <Link href="/event-types" legacyBehavior>
             <a className="text-center md:inline lg:hidden">
               <Logo small icon />
             </a>
           </Link>
   
-          {/* <Navigation /> */}
+          <Navigation />
         </div>
   
         {/* {isCalcom && <Tips />} */}
@@ -49,13 +50,14 @@ export default function SideBar() {
   
         <div data-testid="user-dropdown-trigger">
           <span className="hidden lg:inline">
-            {/* <UserDropdown /> */}
+            <UserDropdown />
           </span>
           <span className="hidden md:inline lg:hidden">
-            {/* <UserDropdown small /> */}
+            <UserDropdown small />
           </span>
         </div>
         {/* <DeploymentInfo /> */}
       </aside>
     );
   }
+  
