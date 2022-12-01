@@ -1,12 +1,12 @@
 <div align="center">
 
-<a href="slug.vercel.app">
+<a href="rite.vercel.app">
 <img src="./public/img/banner_gh.jpg" />
 </a>
 
 <p></p>
 
-<a href="https://slug.vercel.app/dash/create">🚀 Short link</a>
+<a href="https://rite.vercel.app/dash/create">🚀 Short link</a>
 <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
 <a href="#-getting-started">🤝 Contribute</a>
 <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
@@ -136,7 +136,7 @@ npx prisma studio
 
 ## 🎉 Deploy on Vercel
 
-- ✅ [https://slug.vercel.app/](https://slug.vercel.app/).
+- ✅ [https://rite.vercel.app/](https://rite.vercel.app/).
 
 ## 🔑 License
 

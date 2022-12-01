@@ -51,7 +51,7 @@ const Card = (props: CardProps) => {
             className="text-gray-100 text-xl hover:text-gray-300 transition-all"
             target="_blank"
             rel="noreferrer"
-            href={`https://slug.vercel.app/s/${props.slug}`}
+            href={`https://rite.vercel.app/s/${props.slug}`}
           >
             /s/{props.slug}
           </a>
@@ -59,7 +59,7 @@ const Card = (props: CardProps) => {
             icon={<BiCopy />}
             className="p-1 ml-1 text-gray-500 hover:text-gray-200 transition-colors duration-200"
             onClick={() =>
-              copyToClipboard(`https://slug.vercel.app/s/${props.slug}`)
+              copyToClipboard(`https://rite.vercel.app/s/${props.slug}`)
             }
           />
         </div>
@@ -75,7 +75,7 @@ const Card = (props: CardProps) => {
           <DropdownItem
             icon={<BiCopy size={17} />}
             onClick={() =>
-              copyToClipboard(`https://slug.vercel.app/s/${props.slug}`)
+              copyToClipboard(`https://rite.vercel.app/s/${props.slug}`)
             }
           >
             Copy
