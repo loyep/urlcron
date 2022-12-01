@@ -1,0 +1,45 @@
+import { LOGO, LOGO_ICON } from "@/constants";
+import Image from "next/image";
+
+export default function Logo({
+  small,
+  icon,
+  animated,
+}: {
+  small?: boolean;
+  icon?: boolean;
+  animated?: boolean;
+}) {
+  return (
+    <h1 className="logo inline">
+      {animated ? (
+        <div className="max-w-40">
+          <span className="inline dark:hidden">
+            {/* <Lottie animationData={LogoAnimated} loop={false} /> */}
+          </span>
+          <span className="hidden dark:inline">
+            {/* <Lottie animationData={LogoAnimatedWhite} loop={false} /> */}
+          </span>
+        </div>
+      ) : (
+        <strong>
+          {icon ? (
+            <Image
+              className="mx-auto w-9"
+              alt="Cal"
+              title="Cal"
+              src={LOGO_ICON}
+            />
+          ) : (
+            <Image
+              className={small ? "h-4 w-auto" : "h-5 w-auto"}
+              alt="Cal"
+              title="Cal"
+              src={LOGO}
+            />
+          )}
+        </strong>
+      )}
+    </h1>
+  );
+}

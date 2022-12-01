@@ -1,6 +1,11 @@
-import type { AppType } from "next/dist/shared/lib/utils";
 import type { Session } from "next-auth";
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from "@vercel/analytics/react";
+import type {
+  AppProps as NextAppProps,
+  AppProps as NextJsAppProps,
+} from "next/app";
+import { NextRouter } from "next/router";
+import { ComponentProps, ReactNode } from "react";
 
 // tRPC =>
 import { trpc } from "@/utils/trpc";
@@ -24,11 +29,24 @@ import nextSeoConfig from "next-seo.config";
 // Next progress =>
 import NextNProgress from "nextjs-progressbar";
 
-const MyApp: AppType<{ session: Session | null }> = ({
-  Component,
-  pageProps: { session, ...pageProps },
-  router,
-}) => {
+// Workaround for https://github.com/vercel/next.js/issues/8592
+export type AppProps = Omit<NextAppProps, "Component"> & {
+  Component: NextAppProps["Component"] & {
+    requiresLicense?: boolean;
+    isThemeSupported?: boolean | ((arg: { router: NextRouter }) => boolean);
+    getLayout?: (page: React.ReactElement, router: NextRouter) => ReactNode;
+  };
+  /** Will be defined only is there was an error */
+  err?: Error;
+  session: Session | null;
+};
+
+// Use the layout defined at the page level, if available
+
+const MyApp = (props: AppProps) => {
+  const { Component, pageProps, err, router, session } = props;
+  const getLayout = Component.getLayout ?? ((page) => page);
+
   return (
     <>
       <NextNProgress
@@ -40,11 +58,12 @@ const MyApp: AppType<{ session: Session | null }> = ({
       />
       <DefaultSeo {...nextSeoConfig} />
       <SessionProvider session={session}>
-        <Layout>
+        {getLayout(<Component {...pageProps} err={err} />, router)}
+        {/* <Layout>
           <Show routerKey={router.route}>
             <Component {...pageProps} />
           </Show>
-        </Layout>
+        </Layout> */}
       </SessionProvider>
       <Toaster position="bottom-center" reverseOrder={false} />
       <Analytics />

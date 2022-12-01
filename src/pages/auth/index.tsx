@@ -5,6 +5,7 @@ import { signIn } from "next-auth/react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { BsGithub } from "react-icons/bs";
+import AuthLayout from "../../layout/auth";
 
 const Auth = () => {
   const [loading, setLoading] = useState(false);
@@ -33,20 +34,19 @@ const Auth = () => {
   };
 
   return (
-    <div className="container mx-auto">
-      <div className="flex flex-col items-center justify-center mt-16 px-4">
-        <h1 className="text-4xl mb-8">👋 Welcome</h1>
+    <AuthLayout showLogo title="Login" description="" heading="欢迎回来">
+      <div className="space-y-6">
         <Button
-          className="ml-4 bg-midnightLight"
           onClick={handleSignIn}
           isLoading={loading}
           loadingText="Loading..."
           icon={<BsGithub size={17} />}
+          className="bg-brand-500 hover:bg-brand-400 focus:ring-offset focus:ring-brand-500 dark:hover:bg-darkgray-600 dark:bg-darkgray-900 relative inline-flex h-9 w-full items-center justify-center  rounded-md px-4 py-2.5 text-sm font-medium text-white transition-colors focus:border focus:border-white focus:outline-none focus:ring-2 dark:text-black"
         >
           Sign in with GitHub
         </Button>
       </div>
-    </div>
+    </AuthLayout>
   );
 };
 
