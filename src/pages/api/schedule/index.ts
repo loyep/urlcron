@@ -15,6 +15,6 @@ export default async function handler(
 }
 
 async function queryScheduleTasks(date: string) {
-  const tasks = await prisma.task.findMany();
-  console.log("tasks", tasks);
+  const jobs = await prisma.job.findMany();
+  console.log("jobs", jobs);
 }

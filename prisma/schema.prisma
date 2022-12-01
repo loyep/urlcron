@@ -1,5 +1,5 @@
 generator client {
-    provider = "prisma-client-js"
+    provider        = "prisma-client-js"
     previewFeatures = ["referentialIntegrity"]
 }
 
@@ -10,7 +10,7 @@ datasource db {
 }
 
 model link {
-    id          String      @id @default(uuid())
+    id          String   @id @default(uuid())
     url         String   @db.Text
     slug        String   @unique
     description String?
@@ -23,19 +23,19 @@ model link {
 }
 
 model Account {
-    id                String     @id @default(uuid())
-    userId            String
-    type              String
-    provider          String
-    providerAccountId String
-    refresh_token     String? //@db.Text
-    access_token      String? //@db.Text
-    expires_at        Int?
-    token_type        String?
-    scope             String?
-    id_token          String? //@db.Text
-    session_state     String?
-    user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+    id                       String  @id @default(uuid())
+    userId                   String
+    type                     String
+    provider                 String
+    providerAccountId        String
+    refresh_token            String? //@db.Text
+    access_token             String? //@db.Text
+    expires_at               Int?
+    token_type               String?
+    scope                    String?
+    id_token                 String? //@db.Text
+    session_state            String?
+    user                     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
     refresh_token_expires_in Int?
 
     @@unique([provider, providerAccountId])
@@ -43,7 +43,7 @@ model Account {
 }
 
 model Session {
-    id           String      @id @default(uuid())
+    id           String   @id @default(uuid())
     sessionToken String   @unique
     userId       String
     expires      DateTime
@@ -53,7 +53,7 @@ model Session {
 }
 
 model User {
-    id            String       @id @default(uuid())
+    id            String    @id @default(uuid())
     name          String?
     username      String?
     email         String?   @unique
@@ -62,7 +62,7 @@ model User {
     accounts      Account[]
     sessions      Session[]
     links         link[]
-    tasks         Task[]
+    jobs          Job[]
 }
 
 model VerificationToken {
@@ -73,15 +73,27 @@ model VerificationToken {
     @@unique([identifier, token])
 }
 
-model Task {
-    id        Int     @id @default(autoincrement())
+model Job {
+    id        Int      @id @default(autoincrement())
     title     String
     content   String?
     url       String
     cron      String
-    published Boolean @default(false)
-    author    User?   @relation(fields: [authorId], references: [id])
+    published Boolean  @default(false)
+    author    User?    @relation(fields: [authorId], references: [id])
     authorId  String?
+    logs      JobLog[]
 
     @@index([authorId])
+}
+
+model JobLog {
+    id        Int      @id @default(autoincrement())
+    jobId     Int
+    createdAt DateTime @default(now())
+    status    String
+    message   String?
+    job       Job      @relation(fields: [jobId], references: [id])
+
+    @@index([jobId])
 }
