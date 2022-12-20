@@ -29,7 +29,7 @@
     "fastify": "^4.10.2",
     "fastify-nextjs": "^7.3.0",
     "@fastify/nextjs": "^9.2.0",
-    "framer-motion": "7.6.10",
+    "framer-motion": "7.10.3",
     "nanoid": "4.0.0",
     "next": "13.0.5",
     "next-auth": "4.17.0",
